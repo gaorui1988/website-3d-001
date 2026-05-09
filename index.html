@@ -135,6 +135,14 @@
 <body>
 
 <div id="loader"><div class="lr"></div><div class="lt">Loading</div></div>
+<script>function hideLoader(){var el=document.getElementById('loader');if(el)el.classList.add('hidden')}
+// Hide on page load (with delay for 3D init)
+window.addEventListener('load',function(){setTimeout(hideLoader,1000)})
+// Absolute fallback: force hide after 6s regardless
+setTimeout(hideLoader,6000)
+// Hide immediately if any JS error occurs (CDN fail, syntax error, etc)
+window.addEventListener('error',function(){hideLoader()},true)
+</script>
 <div id="scrollProgress"></div>
 <button id="btt" aria-label="回到顶部"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg></button>
 
