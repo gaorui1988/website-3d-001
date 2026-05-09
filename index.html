@@ -3,1015 +3,767 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NOVA X1 Pro - 未来旗舰</title>
+  <title>NOVA X1 Pro — 未来旗舰</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
   <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.157.0/examples/jsm/"
-      }
-    }
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.157.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.157.0/examples/jsm/"
+    } }
   </script>
-
   <style>
-    /* ========== RESET & BASE ========== */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0a0a0a; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #555; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#000;color:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:#0a0a0a}
+    ::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
 
-    /* ========== UTILITY ========== */
-    .gradient-text {
-      background: linear-gradient(135deg, #6C63FF 0%, #00EF8B 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .section-title {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
-      line-height: 1.2;
-    }
-    .section-subtitle {
-      font-size: 1.125rem;
-      color: #9CA3AF;
-      max-width: 600px;
-      line-height: 1.7;
-    }
-    @media (min-width: 768px) {
-      .section-title { font-size: 3.25rem; }
-      .section-subtitle { font-size: 1.25rem; }
-    }
+    .gradient-text{background:linear-gradient(135deg,#6C63FF 0%,#00EF8B 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-    /* ========== NAVBAR ========== */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 16px 0;
-      transition: all 0.4s ease;
-    }
-    .navbar.scrolled {
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .navbar-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      max-width: 1200px; margin: 0 auto; padding: 0 24px;
-    }
-    .logo {
-      display: flex; align-items: center; gap: 10px;
-      font-size: 1.125rem; font-weight: 600;
-    }
-    .logo-icon {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: linear-gradient(135deg, #6C63FF, #00EF8B);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 14px; font-weight: 700; transition: transform 0.2s;
-    }
-    .logo:hover .logo-icon { transform: scale(1.05); }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
-    .nav-links a {
-      font-size: 0.875rem; color: #9CA3AF; transition: color 0.2s;
-      letter-spacing: 0.02em;
-    }
-    .nav-links a:hover { color: #fff; }
-    .nav-cta {
-      padding: 8px 20px; border-radius: 999px;
-      background: linear-gradient(135deg, #6C63FF, #5a52e0);
-      color: #fff !important; font-weight: 500;
-      box-shadow: 0 4px 20px rgba(108,99,255,0.2);
-      transition: all 0.2s !important;
-    }
-    .nav-cta:hover {
-      background: linear-gradient(135deg, #7B73FF, #6C63FF) !important;
-      box-shadow: 0 4px 30px rgba(108,99,255,0.3);
-    }
-    .nav-toggle { display: none; background: none; border: none; color: #9CA3AF; cursor: pointer; }
-    .mobile-menu {
-      display: none; background: rgba(0,0,0,0.95); backdrop-filter: blur(20px);
-      border-top: 1px solid rgba(255,255,255,0.05); padding: 16px 24px;
-    }
-    .mobile-menu.open { display: flex; flex-direction: column; gap: 12px; }
-    .mobile-menu a { color: #9CA3AF; padding: 8px 0; font-size: 0.9rem; }
-    .mobile-menu a:hover { color: #fff; }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: block; }
-    }
+    /* ===== SCROLL PROGRESS BAR ===== */
+    #scrollProgress{position:fixed;top:0;left:0;width:0;height:2px;background:linear-gradient(135deg,#6C63FF,#00EF8B);z-index:200;transition:width 0.1s}
 
-    /* ========== HERO ========== */
-    #hero {
-      position: relative; width: 100%; height: 100vh; overflow: hidden;
-    }
-    #hero-canvas {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    }
-    .hero-overlay {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 40%, rgba(0,0,0,0.6) 100%),
-                  linear-gradient(90deg, rgba(0,0,0,0.4) 0%, transparent 50%, rgba(0,0,0,0.2) 100%);
-      pointer-events: none;
-    }
-    .hero-content {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      text-align: center; width: 90%; max-width: 800px;
-      pointer-events: none;
-      opacity: 0; transform: translate(-50%, -30%);
-      animation: heroFadeIn 1s ease-out 0.5s forwards;
-    }
-    @keyframes heroFadeIn {
-      to { opacity: 1; transform: translate(-50%, -50%); }
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 6px 16px; border-radius: 999px;
-      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px); margin-bottom: 32px;
-      pointer-events: auto;
-    }
-    .hero-badge-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: #00EF8B;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .hero-badge span {
-      font-size: 0.75rem; color: #9CA3AF; letter-spacing: 0.2em; text-transform: uppercase;
-    }
-    .hero-title {
-      font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 24px;
-      letter-spacing: -0.03em;
-    }
-    .hero-title .outline {
-      display: block; color: rgba(255,255,255,0.9);
-    }
-    @media (min-width: 768px) { .hero-title { font-size: 6rem; } }
-    @media (min-width: 1024px) { .hero-title { font-size: 8rem; } }
-    .hero-subtitle {
-      font-size: 1rem; color: #9CA3AF; line-height: 1.7;
-      max-width: 500px; margin: 0 auto 40px;
-    }
-    @media (min-width: 768px) { .hero-subtitle { font-size: 1.25rem; } }
-    .hero-buttons {
-      display: flex; align-items: center; justify-content: center; gap: 16px;
-      pointer-events: auto; flex-wrap: wrap;
-    }
-    .btn-primary {
-      padding: 14px 32px; border-radius: 999px; border: none; cursor: pointer;
-      background: linear-gradient(135deg, #6C63FF, #5a52e0);
-      color: #fff; font-size: 0.95rem; font-weight: 500; font-family: inherit;
-      box-shadow: 0 4px 30px rgba(108,99,255,0.25);
-      transition: all 0.2s;
-    }
-    .btn-primary:hover { background: linear-gradient(135deg, #7B73FF, #6C63FF); box-shadow: 0 4px 40px rgba(108,99,255,0.4); transform: translateY(-1px); }
-    .btn-secondary {
-      padding: 14px 32px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.15);
-      background: transparent; color: rgba(255,255,255,0.8); font-size: 0.95rem;
-      font-weight: 500; cursor: pointer; font-family: inherit;
-      transition: all 0.2s;
-    }
-    .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.3); }
+    /* ===== NAVBAR ===== */
+    .navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:all 0.4s ease}
+    .navbar.scrolled{background:rgba(0,0,0,0.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.05)}
+    .navbar-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+    .logo{display:flex;align-items:center;gap:10px;font-size:1.125rem;font-weight:600}
+    .logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#6C63FF,#00EF8B);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;transition:transform 0.2s}
+    .logo:hover .logo-icon{transform:scale(1.05)}
+    .nav-links{display:flex;align-items:center;gap:32px}
+    .nav-links a{font-size:0.875rem;color:#9CA3AF;transition:color 0.2s;letter-spacing:0.02em}
+    .nav-links a:hover{color:#fff}
+    .nav-cta{padding:8px 20px;border-radius:999px;background:linear-gradient(135deg,#6C63FF,#5a52e0);color:#fff!important;font-weight:500;box-shadow:0 4px 20px rgba(108,99,255,0.2);transition:all 0.2s!important}
+    .nav-cta:hover{background:linear-gradient(135deg,#7B73FF,#6C63FF)!important;box-shadow:0 4px 30px rgba(108,99,255,0.3)}
+    .nav-toggle{display:none;background:none;border:none;color:#9CA3AF;cursor:pointer}
+    .mobile-menu{display:none;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.05);padding:16px 24px}
+    .mobile-menu.open{display:flex;flex-direction:column;gap:12px}
+    .mobile-menu a{color:#9CA3AF;padding:8px 0;font-size:0.9rem}
+    .mobile-menu a:hover{color:#fff}
+    @media(max-width:768px){.nav-links{display:none}.nav-toggle{display:block}}
 
-    /* ========== COLOR PICKER ========== */
-    .color-picker {
-      position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%);
-      display: flex; align-items: center; gap: 12px;
-      padding: 12px 24px; border-radius: 999px;
-      background: rgba(0,0,0,0.5); backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
-      opacity: 0; animation: fadeUp 0.8s ease-out 1s forwards;
-      z-index: 10;
-    }
-    @keyframes fadeUp { to { opacity: 1; transform: translateX(-50%) translateY(0); } }
-    .color-picker-label {
-      font-size: 0.7rem; color: #6B7280; letter-spacing: 0.15em;
-      text-transform: uppercase; margin-right: 4px;
-    }
-    .color-btn {
-      width: 28px; height: 28px; border-radius: 50%; border: none; cursor: pointer;
-      transition: all 0.3s ease; position: relative;
-    }
-    .color-btn:hover { transform: scale(1.15); }
-    .color-btn.active {
-      transform: scale(1.25);
-      box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(0,0,0,0.5);
-    }
-    .scroll-hint {
-      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
-      animation: bounce 2s ease-in-out infinite; z-index: 10;
-    }
-    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-8px); } }
+    /* ===== HERO ===== */
+    #hero{position:relative;width:100%;height:100vh;overflow:hidden}
+    #hero-canvas{position:absolute;top:0;left:0;width:100%;height:100%}
+    .hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(0,0,0,0.3) 0%,transparent 40%,rgba(0,0,0,0.6) 100%),linear-gradient(90deg,rgba(0,0,0,0.4) 0%,transparent 50%,rgba(0,0,0,0.2) 100%);pointer-events:none}
+    .hero-content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:90%;max-width:800px;pointer-events:none;opacity:0;transform:translate(-50%,-30%);animation:heroFadeIn 1s ease-out 0.5s forwards}
+    @keyframes heroFadeIn{to{opacity:1;transform:translate(-50%,-50%)}}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(10px);margin-bottom:32px;pointer-events:auto}
+    .hero-badge-dot{width:8px;height:8px;border-radius:50%;background:#00EF8B;animation:pulse 2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    .hero-badge span{font-size:0.75rem;color:#9CA3AF;letter-spacing:0.2em;text-transform:uppercase}
+    .hero-title{font-size:3.5rem;font-weight:900;line-height:1.1;margin-bottom:24px;letter-spacing:-0.03em}
+    .hero-title .outline{display:block;color:rgba(255,255,255,0.9)}
+    @media(min-width:768px){.hero-title{font-size:6rem}}
+    @media(min-width:1024px){.hero-title{font-size:8rem}}
+    .hero-subtitle{font-size:1rem;color:#9CA3AF;line-height:1.7;max-width:500px;margin:0 auto 40px}
+    @media(min-width:768px){.hero-subtitle{font-size:1.25rem}}
+    .hero-buttons{display:flex;align-items:center;justify-content:center;gap:16px;pointer-events:auto;flex-wrap:wrap}
+    .btn-primary{padding:14px 32px;border-radius:999px;border:none;cursor:pointer;background:linear-gradient(135deg,#6C63FF,#5a52e0);color:#fff;font-size:0.95rem;font-weight:500;font-family:inherit;box-shadow:0 4px 30px rgba(108,99,255,0.25);transition:all 0.2s}
+    .btn-primary:hover{background:linear-gradient(135deg,#7B73FF,#6C63FF);box-shadow:0 4px 40px rgba(108,99,255,0.4);transform:translateY(-2px)}
+    .btn-secondary{padding:14px 32px;border-radius:999px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.8);font-size:0.95rem;font-weight:500;cursor:pointer;font-family:inherit;transition:all 0.2s}
+    .btn-secondary:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.3)}
 
-    /* ========== FEATURES ========== */
-    #features {
-      padding: 120px 0; position: relative;
-    }
-    #features::before {
-      content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 800px; height: 600px;
-      background: radial-gradient(ellipse, rgba(108,99,255,0.03) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .features-header {
-      text-align: center; margin-bottom: 80px;
-    }
-    .features-tag {
-      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: #6C63FF; font-weight: 500; margin-bottom: 16px; display: block;
-    }
-    .features-grid {
-      display: grid; gap: 24px;
-    }
-    @media (min-width: 768px) { .features-grid { grid-template-columns: 1fr 1fr; } }
-    .feature-card {
-      padding: 32px; border-radius: 16px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      transition: all 0.3s ease;
-      opacity: 0; transform: translateY(30px);
-    }
-    .feature-card.visible { opacity: 1; transform: translateY(0); transition: all 0.7s ease-out; }
-    .feature-card:hover {
-      background: rgba(255,255,255,0.04);
-      border-color: rgba(255,255,255,0.1);
-    }
-    .feature-icon {
-      width: 56px; height: 56px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 24px; color: #fff;
-    }
-    .feature-card h3 {
-      font-size: 1.25rem; font-weight: 600; margin-bottom: 12px;
-      color: rgba(255,255,255,0.9);
-    }
-    .feature-card p {
-      font-size: 0.9rem; color: #9CA3AF; line-height: 1.7;
-    }
+    /* ===== COLOR PICKER ===== */
+    .color-picker{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;padding:12px 24px;border-radius:999px;background:rgba(0,0,0,0.5);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1);opacity:0;animation:fadeUp 0.8s ease-out 1s forwards;z-index:10}
+    @keyframes fadeUp{to{opacity:1;transform:translateX(-50%) translateY(0)}}
+    .color-picker-label{font-size:0.7rem;color:#6B7280;letter-spacing:0.15em;text-transform:uppercase;margin-right:4px}
+    .color-btn{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all 0.3s ease;position:relative}
+    .color-btn:hover{transform:scale(1.15);border-color:rgba(255,255,255,0.3)}
+    .color-btn.active{transform:scale(1.25);border-color:#fff;box-shadow:0 0 0 4px rgba(0,0,0,0.5)}
+    .scroll-hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);animation:bounce 2s ease-in-out infinite;z-index:10}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
 
-    /* ========== SPECS ========== */
-    #specs {
-      padding: 120px 0; position: relative;
-    }
-    #specs::after {
-      content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 800px; height: 600px;
-      background: radial-gradient(ellipse, rgba(0,239,139,0.03) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .specs-header {
-      text-align: center; margin-bottom: 80px;
-    }
-    .specs-tag {
-      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: #6C63FF; font-weight: 500; margin-bottom: 16px; display: block;
-    }
-    .specs-grid {
-      display: grid; gap: 12px;
-    }
-    @media (min-width: 768px) { .specs-grid { grid-template-columns: 1fr 1fr; } }
-    @media (min-width: 1024px) { .specs-grid { grid-template-columns: 1fr 1fr 1fr; } }
-    .spec-item {
-      padding: 20px 24px; border-radius: 12px;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(255,255,255,0.06);
-      transition: all 0.3s;
-      opacity: 0; transform: translateY(20px);
-    }
-    .spec-item.visible { opacity: 1; transform: translateY(0); transition: all 0.6s ease-out; }
-    .spec-item:hover { background: rgba(255,255,255,0.04); }
-    .spec-label {
-      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: #6B7280; margin-bottom: 6px;
-    }
-    .spec-value {
-      font-size: 1rem; font-weight: 500; color: rgba(255,255,255,0.9);
-    }
+    /* ===== SECTION DIVIDER ===== */
+    .section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(108,99,255,0.3),rgba(0,239,139,0.3),transparent);max-width:400px;margin:0 auto}
 
-    /* ========== SPECS CTA ========== */
-    .specs-cta {
-      text-align: center; margin-top: 64px;
-      opacity: 0; transform: translateY(20px);
-    }
-    .specs-cta.visible { opacity: 1; transform: translateY(0); transition: all 0.7s ease-out 0.3s; }
-    .specs-cta p { color: #6B7280; margin-bottom: 20px; }
+    /* ===== FEATURES ===== */
+    #features{padding:120px 0;position:relative}
+    #features::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(108,99,255,0.03) 0%,transparent 70%);pointer-events:none}
+    .features-header{text-align:center;margin-bottom:80px}
+    .features-tag{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#6C63FF;font-weight:500;margin-bottom:16px;display:block}
+    .features-grid{display:grid;gap:24px}
+    @media(min-width:768px){.features-grid{grid-template-columns:1fr 1fr}}
+    .feature-card{padding:32px;border-radius:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);transition:all 0.4s ease;opacity:0;transform:translateY(30px);position:relative;overflow:hidden}
+    .feature-card::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;background:linear-gradient(90deg,transparent,currentColor,transparent);transition:left 0.6s ease;opacity:0.3}
+    .feature-card:hover::after{left:100%}
+    .feature-card.visible{opacity:1;transform:translateY(0);transition:all 0.7s ease-out}
+    .feature-card:hover{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);transform:translateY(-4px)}
+    .feature-icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:24px;color:#fff}
+    .feature-card h3{font-size:1.25rem;font-weight:600;margin-bottom:12px;color:rgba(255,255,255,0.9)}
+    .feature-card p{font-size:0.9rem;color:#9CA3AF;line-height:1.7}
 
-    /* ========== FOOTER ========== */
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 64px 0 32px;
-    }
-    .footer-grid {
-      display: grid; gap: 40px; margin-bottom: 48px;
-    }
-    @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
-    .footer-brand p {
-      font-size: 0.875rem; color: #6B7280; line-height: 1.7; margin-top: 12px;
-      max-width: 360px;
-    }
-    .footer-col h4 {
-      font-size: 0.75rem; color: rgba(255,255,255,0.4);
-      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px;
-    }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-col a {
-      font-size: 0.875rem; color: #6B7280; transition: color 0.2s;
-    }
-    .footer-col a:hover { color: #fff; }
-    .footer-bottom {
-      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05);
-      display: flex; flex-direction: column; align-items: center; gap: 16px;
-    }
-    @media (min-width: 768px) {
-      .footer-bottom { flex-direction: row; justify-content: space-between; }
-    }
-    .footer-bottom p { font-size: 0.75rem; color: #4B5563; }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 0.75rem; color: #4B5563; transition: color 0.2s; }
-    .footer-links a:hover { color: #9CA3AF; }
+    /* ===== STATS COUNTER ===== */
+    #stats{padding:80px 0;position:relative}
+    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    @media(min-width:768px){.stats-grid{grid-template-columns:repeat(4,1fr)}}
+    .stat-card{text-align:center;padding:32px 16px;border-radius:16px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);opacity:0;transform:translateY(20px);transition:all 0.6s ease-out}
+    .stat-card.visible{opacity:1;transform:translateY(0)}
+    .stat-number{font-size:2.5rem;font-weight:800;margin-bottom:8px}
+    @media(min-width:768px){.stat-number{font-size:3.5rem}}
+    .stat-label{font-size:0.85rem;color:#6B7280}
+
+    /* ===== DESIGN SECTION ===== */
+    #design{padding:120px 0;position:relative}
+    #design::before{content:'';position:absolute;bottom:0;right:0;width:600px;height:600px;background:radial-gradient(circle,rgba(0,239,139,0.02) 0%,transparent 70%);pointer-events:none}
+    .design-mockup{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(135deg,rgba(108,99,255,0.05),rgba(0,239,139,0.05));border:1px solid rgba(255,255,255,0.06);margin-top:60px}
+    .design-mockup-inner{padding:60px 40px;display:grid;gap:40px;align-items:center}
+    @media(min-width:768px){.design-mockup-inner{grid-template-columns:1fr 1fr;padding:80px 60px}}
+    .design-features{display:flex;flex-direction:column;gap:24px}
+    .design-item{display:flex;gap:16px;align-items:flex-start;opacity:0;transform:translateX(-20px)}
+    .design-item.visible{opacity:1;transform:translateX(0);transition:all 0.6s ease-out}
+    .design-dot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0}
+    .design-item h4{font-size:1.1rem;font-weight:600;margin-bottom:4px}
+    .design-item p{font-size:0.85rem;color:#6B7280;line-height:1.6}
+
+    /* ===== SPECS ===== */
+    #specs{padding:120px 0;position:relative}
+    #specs::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(0,239,139,0.03) 0%,transparent 70%);pointer-events:none}
+    .specs-header{text-align:center;margin-bottom:80px}
+    .specs-tag{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#6C63FF;font-weight:500;margin-bottom:16px;display:block}
+    .specs-grid{display:grid;gap:12px}
+    @media(min-width:768px){.specs-grid{grid-template-columns:1fr 1fr}}
+    @media(min-width:1024px){.specs-grid{grid-template-columns:1fr 1fr 1fr}}
+    .spec-item{padding:20px 24px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);transition:all 0.4s ease;opacity:0;transform:translateY(20px)}
+    .spec-item.visible{opacity:1;transform:translateY(0);transition:all 0.6s ease-out}
+    .spec-item:hover{background:rgba(255,255,255,0.04);border-color:rgba(108,99,255,0.2)}
+    .spec-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:#6B7280;margin-bottom:6px}
+    .spec-value{font-size:1rem;font-weight:500;color:rgba(255,255,255,0.9)}
+    .specs-cta{text-align:center;margin-top:64px;opacity:0;transform:translateY(20px)}
+    .specs-cta.visible{opacity:1;transform:translateY(0);transition:all 0.7s ease-out 0.3s}
+    .specs-cta p{color:#6B7280;margin-bottom:20px}
+
+    /* ===== BACK TO TOP ===== */
+    #backToTop{position:fixed;bottom:32px;right:32px;z-index:99;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:rgba(0,0,0,0.6);backdrop-filter:blur(12px);color:#9CA3AF;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.3s;opacity:0;transform:translateY(20px);pointer-events:none}
+    #backToTop.show{opacity:1;transform:translateY(0);pointer-events:auto}
+    #backToTop:hover{background:rgba(108,99,255,0.2);border-color:rgba(108,99,255,0.3);color:#fff}
+
+    /* ===== FOOTER ===== */
+    footer{border-top:1px solid rgba(255,255,255,0.05);padding:64px 0 32px}
+    .footer-grid{display:grid;gap:40px;margin-bottom:48px}
+    @media(min-width:768px){.footer-grid{grid-template-columns:2fr 1fr 1fr}}
+    .footer-brand p{font-size:0.875rem;color:#6B7280;line-height:1.7;margin-top:12px;max-width:360px}
+    .footer-col h4{font-size:0.75rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .footer-col a{font-size:0.875rem;color:#6B7280;transition:color 0.2s}
+    .footer-col a:hover{color:#fff}
+    .footer-bottom{padding-top:24px;border-top:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;align-items:center;gap:16px}
+    @media(min-width:768px){.footer-bottom{flex-direction:row;justify-content:space-between}}
+    .footer-bottom p{font-size:0.75rem;color:#4B5563}
+    .footer-links{display:flex;gap:24px}
+    .footer-links a{font-size:0.75rem;color:#4B5563;transition:color 0.2s}
+    .footer-links a:hover{color:#9CA3AF}
+
+    /* ===== LOADING SCREEN ===== */
+    #loader{position:fixed;inset:0;z-index:9999;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s ease,visibility 0.8s ease}
+    #loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-ring{width:48px;height:48px;border-radius:50%;border:2px solid rgba(255,255,255,0.05);border-top-color:#6C63FF;animation:spin 1s linear infinite;margin-bottom:24px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loader-text{font-size:0.8rem;color:#6B7280;letter-spacing:0.2em;text-transform:uppercase}
   </style>
 </head>
 <body>
 
-  <!-- ==================== NAVBAR ==================== -->
-  <nav class="navbar" id="navbar">
-    <div class="navbar-inner">
-      <a href="#hero" class="logo">
-        <div class="logo-icon">N</div>
-        <span>NOVA</span>
-      </a>
-      <div class="nav-links">
-        <a href="#hero">产品</a>
-        <a href="#features">特性</a>
-        <a href="#specs">规格</a>
-        <a href="#hero" class="nav-cta">探索</a>
-      </div>
-      <button class="nav-toggle" id="navToggle" aria-label="菜单">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
-    </div>
-    <div class="mobile-menu" id="mobileMenu">
+<!-- Loading Screen -->
+<div id="loader">
+  <div class="loader-ring"></div>
+  <div class="loader-text">Loading</div>
+</div>
+
+<!-- Scroll Progress -->
+<div id="scrollProgress"></div>
+
+<!-- Back to Top -->
+<button id="backToTop" aria-label="回到顶部">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M18 15l-6-6-6 6"/>
+  </svg>
+</button>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#hero" class="logo"><div class="logo-icon">N</div><span>NOVA</span></a>
+    <div class="nav-links">
       <a href="#hero">产品</a>
       <a href="#features">特性</a>
+      <a href="#design">设计</a>
       <a href="#specs">规格</a>
-      <a href="#hero" style="color:#6C63FF;font-weight:500">探索</a>
+      <a href="#hero" class="nav-cta">探索</a>
     </div>
-  </nav>
-
-  <!-- ==================== HERO ==================== -->
-  <section id="hero">
-    <div id="hero-canvas"></div>
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        <span>下一代旗舰设备</span>
-      </div>
-      <h1 class="hero-title">
-        <span class="gradient-text">NOVA</span>
-        <span class="outline">X1 Pro</span>
-      </h1>
-      <p class="hero-subtitle">
-        重新定义可能的边界。强大的性能、精湛的工艺，以及让你一见倾心的设计。
-      </p>
-      <div class="hero-buttons">
-        <button class="btn-primary" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">了解更多</button>
-        <button class="btn-secondary" onclick="document.getElementById('specs').scrollIntoView({behavior:'smooth'})">查看规格</button>
-      </div>
-    </div>
-
-    <!-- Color Picker -->
-    <div class="color-picker" id="colorPicker">
-      <span class="color-picker-label">配色</span>
-      <button class="color-btn active" data-color="#6C63FF" style="background:#6C63FF" title="极光紫"></button>
-      <button class="color-btn" data-color="#00EF8B" style="background:#00EF8B" title="翡翠绿"></button>
-      <button class="color-btn" data-color="#FF3D6C" style="background:#FF3D6C" title="烈焰红"></button>
-      <button class="color-btn" data-color="#8E8E93" style="background:#8E8E93" title="钛金灰"></button>
-      <button class="color-btn" data-color="#00B4D8" style="background:#00B4D8" title="星云蓝"></button>
-    </div>
-
-    <!-- Scroll Hint -->
-    <div class="scroll-hint" id="scrollHint">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:#4B5563">
-        <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
-    </div>
-  </section>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero">产品</a>
+    <a href="#features">特性</a>
+    <a href="#design">设计</a>
+    <a href="#specs">规格</a>
+    <a href="#hero" style="color:#6C63FF;font-weight:500">探索</a>
+  </div>
+</nav>
 
-  <!-- ==================== FEATURES ==================== -->
-  <section id="features">
-    <div class="container">
-      <div class="features-header fade-section">
-        <span class="features-tag">强大性能</span>
-        <h2 class="section-title">为<span class="gradient-text">极致体验</span>而生</h2>
-        <p class="section-subtitle" style="margin:0 auto">每一项技术突破，都是为了让你在使用时感受到前所未有的顺畅与愉悦。</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card" data-delay="0">
-          <div class="feature-icon" style="background:linear-gradient(135deg,#6C63FF,#8B7FFF)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-            </svg>
-          </div>
-          <h3>旗舰芯片</h3>
-          <p>搭载全新 A18 仿生芯片，3nm 制程工艺，性能提升 40%，能耗降低 30%，为你带来前所未有的流畅体验。</p>
-        </div>
-        <div class="feature-card" data-delay="150">
-          <div class="feature-icon" style="background:linear-gradient(135deg,#00EF8B,#00D97A)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 6v6l4 2"/>
-            </svg>
-          </div>
-          <h3>超长续航</h3>
-          <p>5000mAh 大容量电池搭配智能电源管理系统，支持 120W 超级闪充，15 分钟充至 80%。</p>
-        </div>
-        <div class="feature-card" data-delay="300">
-          <div class="feature-icon" style="background:linear-gradient(135deg,#FF3D6C,#FF6B8A)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M2 15c6.667-6 13.333 0 20-6"/>
-              <path d="M9 22c1.5-1.5 1.5-4 0-5.5"/>
-              <path d="M15 22c-1.5-1.5-1.5-4 0-5.5"/>
-            </svg>
-          </div>
-          <h3>专业影像系统</h3>
-          <p>后置三摄系统，1 英寸超大底传感器，配合 AI 计算摄影，每一拍都是大片。</p>
-        </div>
-        <div class="feature-card" data-delay="450">
-          <div class="feature-icon" style="background:linear-gradient(135deg,#00B4D8,#00E5FF)">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="2" y="3" width="20" height="14" rx="2"/>
-              <path d="M8 21h8"/>
-              <path d="M12 17v4"/>
-            </svg>
-          </div>
-          <h3>沉浸显示</h3>
-          <p>6.8 英寸 OLED 曲面屏，2K+ 分辨率，120Hz LTPO 自适应刷新率，峰值亮度 3000nit。</p>
-        </div>
-      </div>
+<!-- Hero -->
+<section id="hero">
+  <div id="hero-canvas"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-badge-dot"></span><span>下一代旗舰设备</span></div>
+    <h1 class="hero-title"><span class="gradient-text">NOVA</span><span class="outline">X1 Pro</span></h1>
+    <p class="hero-subtitle">重新定义可能的边界。强大的性能、精湛的工艺，以及让你一见倾心的设计。</p>
+    <div class="hero-buttons">
+      <button class="btn-primary" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">了解更多</button>
+      <button class="btn-secondary" onclick="document.getElementById('specs').scrollIntoView({behavior:'smooth'})">查看规格</button>
     </div>
-  </section>
+  </div>
+  <div class="color-picker" id="colorPicker">
+    <span class="color-picker-label">配色</span>
+    <button class="color-btn active" data-color="#6C63FF" style="background:#6C63FF" title="极光紫"></button>
+    <button class="color-btn" data-color="#00EF8B" style="background:#00EF8B" title="翡翠绿"></button>
+    <button class="color-btn" data-color="#FF3D6C" style="background:#FF3D6C" title="烈焰红"></button>
+    <button class="color-btn" data-color="#8E8E93" style="background:#8E8E93" title="钛金灰"></button>
+    <button class="color-btn" data-color="#00B4D8" style="background:#00B4D8" title="星云蓝"></button>
+  </div>
+  <div class="scroll-hint" id="scrollHint">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:#4B5563">
+      <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+    </svg>
+  </div>
+</section>
 
-  <!-- ==================== SPECS ==================== -->
-  <section id="specs">
-    <div class="container">
-      <div class="specs-header fade-section">
-        <span class="specs-tag">技术规格</span>
-        <h2 class="section-title">不妥协的<span class="gradient-text">硬核配置</span></h2>
-        <p class="section-subtitle" style="margin:0 auto">每一项参数都经过精心打磨，只为给你最好的体验。</p>
-      </div>
-      <div class="specs-grid" id="specsGrid"></div>
-      <div class="specs-cta" id="specsCTA">
-        <p>想了解更多产品详情？</p>
-        <button class="btn-primary" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">立即探索</button>
-      </div>
+<!-- Section Divider -->
+<div class="section-divider"></div>
+
+<!-- Features -->
+<section id="features">
+  <div class="container">
+    <div class="features-header fade-section">
+      <span class="features-tag">强大性能</span>
+      <h2 class="section-title" style="font-size:2.5rem;font-weight:800;margin-bottom:1rem;line-height:1.2">为<span class="gradient-text">极致体验</span>而生</h2>
+      <p style="font-size:1.125rem;color:#9CA3AF;max-width:600px;line-height:1.7;margin:0 auto">每一项技术突破，都是为了让你在使用时感受到前所未有的顺畅与愉悦。</p>
     </div>
-  </section>
-
-  <!-- ==================== FOOTER ==================== -->
-  <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#hero" class="logo">
-            <div class="logo-icon">N</div>
-            <span>NOVA</span>
-          </a>
-          <p>探索科技的无限可能。NOVA 致力于将前沿科技与优雅设计完美融合，为每一位用户打造卓越的数字生活体验。</p>
+    <div class="features-grid">
+      <div class="feature-card" data-delay="0">
+        <div class="feature-icon" style="background:linear-gradient(135deg,#6C63FF,#8B7FFF)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
-        <div class="footer-col">
-          <h4>产品</h4>
-          <ul>
-            <li><a href="#hero">NOVA X1 Pro</a></li>
-            <li><a href="#hero">NOVA X1</a></li>
-            <li><a href="#hero">NOVA Buds</a></li>
-            <li><a href="#hero">配件</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>支持</h4>
-          <ul>
-            <li><a href="#hero">帮助中心</a></li>
-            <li><a href="#hero">售后服务</a></li>
-            <li><a href="#hero">联系客服</a></li>
-            <li><a href="#hero">社区论坛</a></li>
-          </ul>
-        </div>
+        <h3>旗舰芯片</h3>
+        <p>搭载全新 A18 仿生芯片，3nm 制程工艺，性能提升 40%，能耗降低 30%，为你带来前所未有的流畅体验。</p>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 NOVA. All rights reserved. 演示网站，所有产品均为虚构。</p>
-        <div class="footer-links">
-          <a href="#hero">隐私政策</a>
-          <a href="#hero">服务条款</a>
-          <a href="#hero">Cookie 设置</a>
+      <div class="feature-card" data-delay="150">
+        <div class="feature-icon" style="background:linear-gradient(135deg,#00EF8B,#00D97A)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
         </div>
+        <h3>超长续航</h3>
+        <p>5000mAh 大容量电池搭配智能电源管理系统，支持 120W 超级闪充，15 分钟充至 80%。</p>
+      </div>
+      <div class="feature-card" data-delay="300">
+        <div class="feature-icon" style="background:linear-gradient(135deg,#FF3D6C,#FF6B8A)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.5-1.5 1.5-4 0-5.5"/><path d="M15 22c-1.5-1.5-1.5-4 0-5.5"/></svg>
+        </div>
+        <h3>专业影像系统</h3>
+        <p>后置三摄系统，1 英寸超大底传感器，配合 AI 计算摄影，每一拍都是大片。</p>
+      </div>
+      <div class="feature-card" data-delay="450">
+        <div class="feature-icon" style="background:linear-gradient(135deg,#00B4D8,#00E5FF)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        </div>
+        <h3>沉浸显示</h3>
+        <p>6.8 英寸 OLED 曲面屏，2K+ 分辨率，120Hz LTPO 自适应刷新率，峰值亮度 3000nit。</p>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- ==================== THREE.JS SCENE ==================== -->
-  <script type="module">
-    import * as THREE from 'three';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+<!-- Stats Counter -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card" data-target="40" data-suffix="%"><div class="stat-number gradient-text">0%</div><div class="stat-label">性能提升</div></div>
+      <div class="stat-card" data-target="120" data-suffix="W"><div class="stat-number gradient-text">0W</div><div class="stat-label">超级闪充</div></div>
+      <div class="stat-card" data-target="5000" data-suffix="mAh"><div class="stat-number gradient-text">0mAh</div><div class="stat-label">电池容量</div></div>
+      <div class="stat-card" data-target="3000" data-suffix="nit"><div class="stat-number gradient-text">0nit</div><div class="stat-label">峰值亮度</div></div>
+    </div>
+  </div>
+</section>
 
-    // ---- Configuration ----
-    const COLORS = ['#6C63FF', '#00EF8B', '#FF3D6C', '#8E8E93', '#00B4D8'];
-    let currentColor = '#6C63FF';
-    let isMobile = window.innerWidth < 768;
+<!-- Section Divider -->
+<div class="section-divider"></div>
 
-    // ---- Scene Setup ----
-    const container = document.getElementById('hero-canvas');
-    const scene = new THREE.Scene();
+<!-- Design -->
+<section id="design">
+  <div class="container">
+    <div class="features-header fade-section">
+      <span class="features-tag" style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:#6C63FF;font-weight:500;margin-bottom:16px;display:block">精湛工艺</span>
+      <h2 class="section-title" style="font-size:2.5rem;font-weight:800;margin-bottom:1rem;line-height:1.2">为<span class="gradient-text">设计而生</span></h2>
+      <p style="font-size:1.125rem;color:#9CA3AF;max-width:600px;line-height:1.7;margin:0 auto">每一处细节都经过千锤百炼，不仅仅是一件科技产品，更是一件艺术品。</p>
+    </div>
+    <div class="design-mockup">
+      <div class="design-mockup-inner">
+        <div class="design-features">
+          <div class="design-item" data-delay="0">
+            <div class="design-dot" style="background:#6C63FF"></div>
+            <div>
+              <h4>航空级铝合金中框</h4>
+              <p>采用 7 系航空铝合金，经过 48 道 CNC 工序精雕细琢，坚固且轻盈。</p>
+            </div>
+          </div>
+          <div class="design-item" data-delay="150">
+            <div class="design-dot" style="background:#00EF8B"></div>
+            <div>
+              <h4>纳米微晶玻璃面板</h4>
+              <p>前后双曲面纳米微晶玻璃，抗摔性能提升 300%，温润如玉的握持手感。</p>
+            </div>
+          </div>
+          <div class="design-item" data-delay="300">
+            <div class="design-dot" style="background:#FF3D6C"></div>
+            <div>
+              <h4>IP68 级防水防尘</h4>
+              <p>精密密封工艺，可在 1.5 米水深下浸泡 30 分钟，无惧风雨。</p>
+            </div>
+          </div>
+          <div class="design-item" data-delay="450">
+            <div class="design-dot" style="background:#00B4D8"></div>
+            <div>
+              <h4>对称式立体声双扬声器</h4>
+              <p>经过 Harman Kardon 专业调音，支持 Dolby Atmos 全景声。</p>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center;padding:40px 20px;border-radius:16px;background:linear-gradient(135deg,rgba(108,99,255,0.08),rgba(0,239,139,0.08));border:1px solid rgba(255,255,255,0.06)">
+          <div style="font-size:4rem;margin-bottom:16px;opacity:0.6">
+            <svg width="80" height="120" viewBox="0 0 80 120" fill="none">
+              <rect x="5" y="0" width="70" height="120" rx="12" stroke="url(#g1)" stroke-width="1.5" fill="rgba(255,255,255,0.02)"/>
+              <rect x="15" y="15" width="50" height="75" rx="4" stroke="url(#g1)" stroke-width="0.5" fill="rgba(255,255,255,0.03)"/>
+              <circle cx="40" cy="10" r="4" fill="rgba(255,255,255,0.1)"/>
+              <path d="M30 108 L40 112 L50 108" stroke="url(#g1)" stroke-width="1" fill="none" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="70" y2="120"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#00EF8B"/></linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <p style="color:#6B7280;font-size:0.9rem">7.8mm 超薄机身 · 198g 轻盈重量</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const camera = new THREE.PerspectiveCamera(30, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.set(0, 0, 8);
+<!-- Section Divider -->
+<div class="section-divider"></div>
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-    });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    container.appendChild(renderer.domElement);
+<!-- Specs -->
+<section id="specs">
+  <div class="container">
+    <div class="specs-header fade-section">
+      <span class="specs-tag">技术规格</span>
+      <h2 class="section-title" style="font-size:2.5rem;font-weight:800;margin-bottom:1rem;line-height:1.2">不妥协的<span class="gradient-text">硬核配置</span></h2>
+      <p style="font-size:1.125rem;color:#9CA3AF;max-width:600px;line-height:1.7;margin:0 auto">每一项参数都经过精心打磨，只为给你最好的体验。</p>
+    </div>
+    <div class="specs-grid" id="specsGrid"></div>
+    <div class="specs-cta" id="specsCTA">
+      <p>想了解更多产品详情？</p>
+      <button class="btn-primary" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">立即探索</button>
+    </div>
+  </div>
+</section>
 
-    // ---- Controls ----
-    const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enablePan = false;
-    controls.enableZoom = true;
-    controls.minDistance = 4;
-    controls.maxDistance = 10;
-    controls.minPolarAngle = Math.PI / 6;
-    controls.maxPolarAngle = Math.PI / 2.2;
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 1.5;
-    controls.rotateSpeed = 0.8;
-    controls.zoomSpeed = 0.8;
-    controls.target.set(0, 0, 0);
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="logo"><div class="logo-icon">N</div><span>NOVA</span></a>
+        <p>探索科技的无限可能。NOVA 致力于将前沿科技与优雅设计完美融合，为每一位用户打造卓越的数字生活体验。</p>
+      </div>
+      <div class="footer-col"><h4>产品</h4><ul><li><a href="#hero">NOVA X1 Pro</a></li><li><a href="#hero">NOVA X1</a></li><li><a href="#hero">NOVA Buds</a></li><li><a href="#hero">配件</a></li></ul></div>
+      <div class="footer-col"><h4>支持</h4><ul><li><a href="#hero">帮助中心</a></li><li><a href="#hero">售后服务</a></li><li><a href="#hero">联系客服</a></li><li><a href="#hero">社区论坛</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 NOVA. All rights reserved. 演示网站，所有产品均为虚构。</p>
+      <div class="footer-links"><a href="#hero">隐私政策</a><a href="#hero">服务条款</a><a href="#hero">Cookie 设置</a></div>
+    </div>
+  </div>
+</footer>
 
-    // ---- Lighting ----
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
-    scene.add(ambientLight);
+<!-- Three.js -->
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-    const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    mainLight.position.set(5, 5, 5);
-    mainLight.castShadow = true;
-    scene.add(mainLight);
+// --- Config ---
+let currentColor = '#6C63FF';
+let isMobile = window.innerWidth < 768;
+let isLowPerf = window.innerWidth < 480 || ('deviceMemory' in navigator && navigator.deviceMemory < 4);
+let scrollProgress = 0;
+let targetRotY = 0;
+let targetCamY = 0;
 
-    const fillLight = new THREE.DirectionalLight(currentColor, 0.5);
-    fillLight.position.set(-3, 2, -2);
-    scene.add(fillLight);
+// --- Scene ---
+const container = document.getElementById('hero-canvas');
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(30, container.clientWidth/container.clientHeight, 0.1, 100);
+camera.position.set(0, 0, 8);
 
-    const rimLight = new THREE.PointLight(0x00EF8B, 0.8);
-    rimLight.position.set(0, -3, 2);
-    scene.add(rimLight);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, isLowPerf ? 1 : 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+container.appendChild(renderer.domElement);
 
-    // ---- Background (radial gradient via canvas) ----
-    const bgCanvas = document.createElement('canvas');
-    bgCanvas.width = 2;
-    bgCanvas.height = 512;
-    const ctx = bgCanvas.getContext('2d');
-    const bgGradient = ctx.createRadialGradient(1, 256, 0, 1, 256, 256);
-    bgGradient.addColorStop(0, '#0a0a1a');
-    bgGradient.addColorStop(1, '#000000');
-    ctx.fillStyle = bgGradient;
-    ctx.fillRect(0, 0, 2, 512);
-    const bgTexture = new THREE.CanvasTexture(bgCanvas);
-    scene.background = bgTexture;
+// --- Controls ---
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enablePan = false;
+controls.enableZoom = true;
+controls.minDistance = 4;
+controls.maxDistance = 10;
+controls.minPolarAngle = Math.PI/6;
+controls.maxPolarAngle = Math.PI/2.2;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 1.5;
+controls.rotateSpeed = 0.8;
+controls.zoomSpeed = 0.8;
+controls.target.set(0, 0, 0);
 
-    // ---- Animated Screen Canvas ----
-    const screenCanvas = document.createElement('canvas');
-    screenCanvas.width = 256;
-    screenCanvas.height = 400;
-    const screenCtx = screenCanvas.getContext('2d');
-    const screenTexture = new THREE.CanvasTexture(screenCanvas);
-    screenTexture.minFilter = THREE.LinearFilter;
+// --- Lighting ---
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+scene.add(ambientLight);
+const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
+mainLight.position.set(5, 5, 5);
+mainLight.castShadow = true;
+scene.add(mainLight);
+const fillLight = new THREE.DirectionalLight(currentColor, 0.5);
+fillLight.position.set(-3, 2, -2);
+scene.add(fillLight);
+const rimLight = new THREE.PointLight(0x00EF8B, 0.8);
+rimLight.position.set(0, -3, 2);
+scene.add(rimLight);
+const backLight = new THREE.DirectionalLight(0x6C63FF, 0.3);
+backLight.position.set(0, 0, -5);
+scene.add(backLight);
 
-    function drawScreenContent(colorHex, time) {
-      const w = screenCanvas.width, h = screenCanvas.height;
-      screenCtx.fillStyle = '#0a0a12';
-      screenCtx.fillRect(0, 0, w, h);
+// --- Background ---
+const bgCanvas = document.createElement('canvas');
+bgCanvas.width = 2; bgCanvas.height = 512;
+const bgCtx = bgCanvas.getContext('2d');
+const bgGrad = bgCtx.createRadialGradient(1, 256, 0, 1, 256, 256);
+bgGrad.addColorStop(0, '#0a0a1a');
+bgGrad.addColorStop(1, '#000');
+bgCtx.fillStyle = bgGrad;
+bgCtx.fillRect(0, 0, 2, 512);
+scene.background = new THREE.CanvasTexture(bgCanvas);
 
-      // Waveform bars
-      const barCount = 35;
-      const barWidth = (w - 40) / barCount;
-      const centerY = h / 2;
+// --- Screen Canvas ---
+const scrCanvas = document.createElement('canvas');
+scrCanvas.width = 256; scrCanvas.height = 400;
+const scrCtx = scrCanvas.getContext('2d');
+const scrTex = new THREE.CanvasTexture(scrCanvas);
+scrTex.minFilter = THREE.LinearFilter;
 
-      for (let i = 0; i < barCount; i++) {
-        const phase = i * 0.4 + time * 1.8;
-        const barHeight = (
-          Math.sin(phase) * 0.4 +
-          Math.sin(phase * 1.7) * 0.3 +
-          Math.sin(phase * 0.5) * 0.3
-        ) * 120 + 8;
+function drawScreen(color, time) {
+  const w=256,h=400;
+  scrCtx.fillStyle='#0a0a12';
+  scrCtx.fillRect(0,0,w,h);
+  const n=35,bw=(w-40)/n,cy=h/2;
+  for(let i=0;i<n;i++){
+    const p=i*0.4+time*1.8;
+    const bh=(Math.sin(p)*0.4+Math.sin(p*1.7)*0.3+Math.sin(p*0.5)*0.3)*120+8;
+    const x=20+i*bw;
+    const g=scrCtx.createLinearGradient(x,cy-bh,x,cy+bh);
+    g.addColorStop(0,color);g.addColorStop(0.5,color+'88');g.addColorStop(1,color);
+    scrCtx.fillStyle=g;
+    scrCtx.beginPath();
+    scrCtx.roundRect(x,cy-bh,bw-2,bh*2,bw*0.3);
+    scrCtx.fill();
+  }
+  scrCtx.fillStyle='rgba(255,255,255,0.2)';
+  scrCtx.beginPath();scrCtx.roundRect(40,25,80,4,2);scrCtx.fill();
+  scrCtx.beginPath();scrCtx.roundRect(150,25,40,4,2);scrCtx.fill();
+  scrCtx.fillStyle='rgba(255,255,255,0.4)';
+  scrCtx.font='12px Inter,sans-serif';
+  scrCtx.textAlign='center';
+  scrCtx.fillText('9:41',w/2,23);
+  scrTex.needsUpdate=true;
+}
 
-        const x = 20 + i * barWidth;
-        const grad = screenCtx.createLinearGradient(x, centerY - barHeight, x, centerY + barHeight);
-        grad.addColorStop(0, colorHex);
-        grad.addColorStop(0.5, colorHex + '88');
-        grad.addColorStop(1, colorHex);
-        screenCtx.fillStyle = grad;
-        screenCtx.beginPath();
-        screenCtx.roundRect(x, centerY - barHeight, barWidth - 2, barHeight * 2, barWidth * 0.3);
-        screenCtx.fill();
+// --- Build Product ---
+const group = new THREE.Group();
+const s = isMobile ? 0.7 : 1;
+group.scale.set(s,s,s);
+
+// Helper
+function mat(c){return new THREE.MeshPhysicalMaterial({color:c,metalness:0.9,roughness:0.15,clearcoat:0.4,clearcoatRoughness:0.3,envMapIntensity:1.2})}
+
+// Body
+const body = new THREE.Mesh(new THREE.BoxGeometry(2.4,3.8,.35),mat(currentColor));
+body.castShadow=true;
+group.add(body);
+
+// Screen base
+const sb=new THREE.Mesh(new THREE.BoxGeometry(2.0,3.1,.06),new THREE.MeshPhysicalMaterial({color:'#0a0a12',metalness:0.2,roughness:0.1}));
+sb.position.set(0,.05,.21);group.add(sb);
+
+// Screen content
+const sc=new THREE.Mesh(new THREE.PlaneGeometry(1.9,3.0),new THREE.MeshBasicMaterial({map:scrTex,toneMapped:false}));
+sc.position.set(0,.05,.24);group.add(sc);
+
+// Screen glow
+const glow=new THREE.Mesh(new THREE.PlaneGeometry(1.9,3.0),new THREE.MeshBasicMaterial({color:currentColor,transparent:true,opacity:.06}));
+glow.position.set(0,.05,.23);group.add(glow);
+
+// Camera
+const cg=new THREE.Group();cg.position.set(0,1.65,.22);
+cg.add(new THREE.Mesh(new THREE.BoxGeometry(.35,.35,.06),new THREE.MeshPhysicalMaterial({color:'#1a1a1a',metalness:.9,roughness:.1})));
+const lensM=new THREE.Mesh(new THREE.CircleGeometry(.07,32),new THREE.MeshBasicMaterial({color:'#111'}));lensM.position.z=.05;cg.add(lensM);
+const lensD=new THREE.Mesh(new THREE.CircleGeometry(.025,16),new THREE.MeshBasicMaterial({color:currentColor,transparent:true,opacity:.6}));lensD.position.z=.055;cg.add(lensD);
+group.add(cg);
+
+// Buttons
+const btnM=new THREE.MeshPhysicalMaterial({color:'#2a2a2a',metalness:.8,roughness:.3});
+const b1=new THREE.Mesh(new THREE.BoxGeometry(.08,.35,.08),btnM);b1.position.set(1.24,.6,0);group.add(b1);
+const b2=new THREE.Mesh(new THREE.BoxGeometry(.08,.45,.08),btnM);b2.position.set(1.24,-.1,0);group.add(b2);
+
+// Speaker
+const spk=new THREE.MeshBasicMaterial({color:'#1a1a1a'});
+[-.15,0,.15].forEach(x=>{const g=new THREE.Mesh(new THREE.PlaneGeometry(.04,.25),spk);g.position.set(x,-1.7,.22);group.add(g)});
+
+// Glow rings
+const r1=new THREE.Mesh(new THREE.RingGeometry(1.5,1.65,64),new THREE.MeshBasicMaterial({color:currentColor,transparent:true,opacity:.08,side:THREE.DoubleSide}));
+r1.rotation.x=Math.PI/2;group.add(r1);
+const r2=new THREE.Mesh(new THREE.RingGeometry(2.0,2.1,64),new THREE.MeshBasicMaterial({color:currentColor,transparent:true,opacity:.04,side:THREE.DoubleSide}));
+r2.rotation.x=Math.PI/2;group.add(r2);
+
+// Edge glow (subtle bevel accent)
+const edgeGeo=new THREE.EdgesGeometry(new THREE.BoxGeometry(2.41,3.81,.36));
+const edgeMat=new THREE.LineBasicMaterial({color:currentColor,transparent:true,opacity:.08});
+const edgeLine=new THREE.LineSegments(edgeGeo,edgeMat);
+group.add(edgeLine);
+
+scene.add(group);
+
+// --- Particles ---
+const pc=isLowPerf?50:150;
+const pp=new Float32Array(pc*3),ps=new Float32Array(pc),po=new Float32Array(pc);
+for(let i=0;i<pc;i++){
+  const r=2+Math.random()*4,t=Math.random()*Math.PI*2,p=Math.acos(2*Math.random()-1);
+  pp[i*3]=r*Math.sin(p)*Math.cos(t);pp[i*3+1]=r*Math.cos(p)*.8;pp[i*3+2]=r*Math.sin(p)*Math.sin(t);
+  ps[i]=.1+Math.random()*.3;po[i]=Math.random()*Math.PI*2;
+}
+const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pp,3));
+const pm=new THREE.PointsMaterial({size:.04,color:currentColor,transparent:true,opacity:.6,sizeAttenuation:true,blending:THREE.AdditiveBlending,depthWrite:false});
+const particles=new THREE.Points(pg,pm);
+scene.add(particles);
+
+// --- Resize ---
+window.addEventListener('resize',()=>{
+  isMobile=window.innerWidth<768;
+  const w=container.clientWidth,h=container.clientHeight;
+  camera.aspect=w/h;camera.updateProjectionMatrix();
+  renderer.setSize(w,h);
+  const ns=isMobile?0.7:1;
+  group.scale.set(ns,ns,ns);
+});
+
+// --- Color ---
+function setColor(c){
+  currentColor=c;
+  body.material.color.set(c);
+  fillLight.color.set(c);
+  glow.material.color.set(c);
+  lensD.material.color.set(c);
+  r1.material.color.set(c);
+  r2.material.color.set(c);
+  edgeLine.material.color.set(c);
+  pm.color.set(c);
+}
+document.querySelectorAll('.color-btn').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.color-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');setColor(b.dataset.color);
+}));
+
+// --- Scroll Effects ---
+const heroSection=document.getElementById('hero');
+window.addEventListener('scroll',()=>{
+  const total=document.documentElement.scrollHeight-window.innerHeight;
+  scrollProgress=total>0?window.scrollY/total:0;
+  // Scroll progress bar
+  document.getElementById('scrollProgress').style.width=(scrollProgress*100)+'%';
+  // 3D: rotate product with scroll (0 to 2π)
+  targetRotY=scrollProgress*Math.PI*2;
+  // 3D: tilt camera down slightly as we scroll past hero
+  const heroBottom=heroSection.offsetHeight;
+  const pastHero=Math.max(0,window.scrollY-heroBottom)/total;
+  targetCamY=-pastHero*0.4;
+});
+
+// --- Stat Counters ---
+function animateCounters(){
+  document.querySelectorAll('.stat-card').forEach(card=>{
+    const target=parseInt(card.dataset.target);
+    const suffix=card.dataset.suffix||'';
+    const numEl=card.querySelector('.stat-number');
+    const duration=2000;
+    const start=performance.now();
+    function update(now){
+      const t=Math.min((now-start)/duration,1);
+      const ease=1-Math.pow(1-t,3); // ease-out cubic
+      const val=Math.round(ease*target);
+      numEl.textContent=val.toLocaleString()+suffix;
+      if(t<1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+// IntersectionObservers
+const ioOptions={threshold:.15};
+function observe(sel,cls,delayProp){
+  document.querySelectorAll(sel).forEach(el=>{
+    const obs=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting){
+        const d=delayProp?parseInt(el.dataset.delay)||0:0;
+        setTimeout(()=>el.classList.add(cls),d);
+        obs.unobserve(el);
       }
+    },ioOptions);
+    obs.observe(el);
+  });
+}
+observe('.fade-section','visible',false);
+observe('.feature-card','visible',true);
+observe('.design-item','visible',true);
 
-      // Status bar
-      screenCtx.fillStyle = 'rgba(255,255,255,0.2)';
-      screenCtx.beginPath();
-      screenCtx.roundRect(40, 25, 80, 4, 2);
-      screenCtx.fill();
-      screenCtx.beginPath();
-      screenCtx.roundRect(150, 25, 40, 4, 2);
-      screenCtx.fill();
+document.querySelectorAll('.stat-card').forEach(el=>{
+  const obs=new IntersectionObserver(([e])=>{
+    if(e.isIntersecting){el.classList.add('visible');obs.unobserve(el);}
+  },{threshold:.5});
+  obs.observe(el);
+});
+// Trigger counters when stats section is visible
+const statsObs=new IntersectionObserver(([e])=>{
+  if(e.isIntersecting){animateCounters();statsObs.unobserve(e.target);}
+},{threshold:.3});
+const statsSection=document.getElementById('stats');
+if(statsSection) statsObs.observe(statsSection);
 
-      // Time
-      screenCtx.fillStyle = 'rgba(255,255,255,0.4)';
-      screenCtx.font = '12px Inter, sans-serif';
-      screenCtx.textAlign = 'center';
-      screenCtx.fillText('9:41', w / 2, 23);
-
-      screenTexture.needsUpdate = true;
-    }
-
-    // ---- Build 3D Product ----
-    const productGroup = new THREE.Group();
-    const scale = isMobile ? 0.7 : 1;
-    productGroup.scale.set(scale, scale, scale);
-
-    // Helper: create MeshPhysicalMaterial
-    function bodyMat(color) {
-      return new THREE.MeshPhysicalMaterial({
-        color: color,
-        metalness: 0.9,
-        roughness: 0.15,
-        clearcoat: 0.4,
-        clearcoatRoughness: 0.3,
-        envMapIntensity: 1.2,
-      });
-    }
-
-    // Main body
-    const bodyGeom = new THREE.BoxGeometry(2.4, 3.8, 0.35);
-    const body = new THREE.Mesh(bodyGeom, bodyMat(currentColor));
-    body.castShadow = true;
-    productGroup.add(body);
-
-    // Screen base
-    const screenBaseGeom = new THREE.BoxGeometry(2.0, 3.1, 0.06);
-    const screenBaseMat = new THREE.MeshPhysicalMaterial({
-      color: '#0a0a12',
-      metalness: 0.2,
-      roughness: 0.1,
-    });
-    const screenBase = new THREE.Mesh(screenBaseGeom, screenBaseMat);
-    screenBase.position.z = 0.21;
-    screenBase.position.y = 0.05;
-    productGroup.add(screenBase);
-
-    // Screen content (canvas texture)
-    const screenContentGeom = new THREE.PlaneGeometry(1.9, 3.0);
-    const screenContentMat = new THREE.MeshBasicMaterial({
-      map: screenTexture,
-      toneMapped: false,
-    });
-    const screenContent = new THREE.Mesh(screenContentGeom, screenContentMat);
-    screenContent.position.z = 0.24;
-    screenContent.position.y = 0.05;
-    productGroup.add(screenContent);
-
-    // Screen glow
-    const glowGeom = new THREE.PlaneGeometry(1.9, 3.0);
-    const glowMat = new THREE.MeshBasicMaterial({
-      color: currentColor,
-      transparent: true,
-      opacity: 0.06,
-    });
-    const glowMesh = new THREE.Mesh(glowGeom, glowMat);
-    glowMesh.position.z = 0.23;
-    glowMesh.position.y = 0.05;
-    productGroup.add(glowMesh);
-
-    // Camera module
-    const camGroup = new THREE.Group();
-    camGroup.position.set(0, 1.65, 0.22);
-    const camBodyGeom = new THREE.BoxGeometry(0.35, 0.35, 0.06);
-    const camBodyMat = new THREE.MeshPhysicalMaterial({ color: '#1a1a1a', metalness: 0.9, roughness: 0.1 });
-    const camBody = new THREE.Mesh(camBodyGeom, camBodyMat);
-    camGroup.add(camBody);
-    const lensGeom = new THREE.CircleGeometry(0.07, 32);
-    const lensMat = new THREE.MeshBasicMaterial({ color: '#111' });
-    const lens = new THREE.Mesh(lensGeom, lensMat);
-    lens.position.z = 0.05;
-    camGroup.add(lens);
-    const lensDotGeom = new THREE.CircleGeometry(0.025, 16);
-    const lensDotMat = new THREE.MeshBasicMaterial({ color: currentColor, transparent: true, opacity: 0.6 });
-    const lensDot = new THREE.Mesh(lensDotGeom, lensDotMat);
-    lensDot.position.z = 0.055;
-    camGroup.add(lensDot);
-    productGroup.add(camGroup);
-
-    // Side buttons
-    const btnMat = new THREE.MeshPhysicalMaterial({ color: '#2a2a2a', metalness: 0.8, roughness: 0.3 });
-    const btn1 = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.35, 0.08), btnMat);
-    btn1.position.set(1.24, 0.6, 0);
-    productGroup.add(btn1);
-    const btn2 = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.45, 0.08), btnMat);
-    btn2.position.set(1.24, -0.1, 0);
-    productGroup.add(btn2);
-
-    // Speaker grille
-    const speakerMat = new THREE.MeshBasicMaterial({ color: '#1a1a1a' });
-    [-0.15, 0, 0.15].forEach((x) => {
-      const g = new THREE.Mesh(new THREE.PlaneGeometry(0.04, 0.25), speakerMat);
-      g.position.set(x, -1.7, 0.22);
-      productGroup.add(g);
-    });
-
-    // Glow rings
-    const ringMat1 = new THREE.MeshBasicMaterial({
-      color: currentColor,
-      transparent: true,
-      opacity: 0.08,
-      side: THREE.DoubleSide,
-    });
-    const ring1 = new THREE.Mesh(new THREE.RingGeometry(1.5, 1.65, 64), ringMat1);
-    ring1.rotation.x = Math.PI / 2;
-    productGroup.add(ring1);
-
-    const ringMat2 = new THREE.MeshBasicMaterial({
-      color: currentColor,
-      transparent: true,
-      opacity: 0.04,
-      side: THREE.DoubleSide,
-    });
-    const ring2 = new THREE.Mesh(new THREE.RingGeometry(2.0, 2.1, 64), ringMat2);
-    ring2.rotation.x = Math.PI / 2;
-    productGroup.add(ring2);
-
-    scene.add(productGroup);
-
-    // ---- Particles ----
-    const particleCount = 150;
-    const particlePositions = new Float32Array(particleCount * 3);
-    const particleSpeeds = new Float32Array(particleCount);
-    const particleOffsets = new Float32Array(particleCount);
-
-    for (let i = 0; i < particleCount; i++) {
-      const radius = 2 + Math.random() * 4;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      particlePositions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-      particlePositions[i * 3 + 1] = radius * Math.cos(phi) * 0.8;
-      particlePositions[i * 3 + 2] = radius * Math.sin(phi) * Math.sin(theta);
-      particleSpeeds[i] = 0.1 + Math.random() * 0.3;
-      particleOffsets[i] = Math.random() * Math.PI * 2;
-    }
-
-    const particleGeom = new THREE.BufferGeometry();
-    particleGeom.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-
-    const particleMat = new THREE.PointsMaterial({
-      size: 0.04,
-      color: currentColor,
-      transparent: true,
-      opacity: 0.6,
-      sizeAttenuation: true,
-      blending: THREE.AdditiveBlending,
-      depthWrite: false,
-    });
-    const particles = new THREE.Points(particleGeom, particleMat);
-    scene.add(particles);
-
-    // ---- Resize ----
-    function onResize() {
-      isMobile = window.innerWidth < 768;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-
-      const newScale = isMobile ? 0.7 : 1;
-      productGroup.scale.set(newScale, newScale, newScale);
-    }
-    window.addEventListener('resize', onResize);
-
-    // ---- Color Change ----
-    function setProductColor(colorHex) {
-      currentColor = colorHex;
-      body.material.color.set(colorHex);
-      fillLight.color.set(colorHex);
-      glowMat.color.set(colorHex);
-      lensDotMat.color.set(colorHex);
-      ringMat1.color.set(colorHex);
-      ringMat2.color.set(colorHex);
-      particleMat.color.set(colorHex);
-    }
-
-    // ---- Color Picker Events ----
-    document.querySelectorAll('.color-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.color-btn').forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-        setProductColor(btn.dataset.color);
-      });
-    });
-
-    // ---- Scroll Fade Animations ----
-    function observeSections() {
-      const fadeSections = document.querySelectorAll('.fade-section');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-
-      fadeSections.forEach((el) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s ease-out';
-        observer.observe(el);
-      });
-    }
-
-    function observeCards() {
-      const cards = document.querySelectorAll('.feature-card');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.dataset.delay) || 0;
-            setTimeout(() => {
-              entry.target.classList.add('visible');
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      cards.forEach((el) => observer.observe(el));
-    }
-
-    function observeSpecs() {
-      const grid = document.getElementById('specsGrid');
-      const items = grid.querySelectorAll('.spec-item');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = parseInt(entry.target.dataset.index) || 0;
-            setTimeout(() => {
-              entry.target.classList.add('visible');
-            }, idx * 80);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      items.forEach((el) => observer.observe(el));
-
-      // CTA
-      const cta = document.getElementById('specsCTA');
-      const ctaObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            ctaObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-      ctaObserver.observe(cta);
-    }
-
-    // ---- Populate Specs ----
-    function populateSpecs() {
-      const specsData = [
-        { label: '处理器', value: 'A18 仿生芯片 (3nm)' },
-        { label: '屏幕', value: '6.8" OLED 2K+ 120Hz' },
-        { label: '内存', value: '12GB / 16GB LPDDR5X' },
-        { label: '存储', value: '256GB / 512GB / 1TB' },
-        { label: '主摄', value: '50MP 1英寸传感器' },
-        { label: '电池', value: '5000mAh + 120W' },
-        { label: '系统', value: 'NovaOS 3.0 (基于 Android 15)' },
-        { label: '重量', value: '198g' },
-        { label: '防护等级', value: 'IP68' },
-        { label: '网络', value: '5G / Wi-Fi 7 / BT 5.4' },
-        { label: '充电', value: '120W有线 / 50W无线' },
-        { label: '尺寸', value: '163.2 × 76.1 × 8.3mm' },
-      ];
-
-      const grid = document.getElementById('specsGrid');
-      specsData.forEach((spec, i) => {
-        const div = document.createElement('div');
-        div.className = 'spec-item';
-        div.dataset.index = i;
-        div.innerHTML = `
-          <div class="spec-label">${spec.label}</div>
-          <div class="spec-value">${spec.value}</div>
-        `;
-        grid.appendChild(div);
-      });
-    }
-
-    populateSpecs();
-    observeSections();
-    observeCards();
-    observeSpecs();
-
-    // ---- Navbar Scroll ----
-    window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
+// Specs + CTA
+function observeSpecs(){
+  document.querySelectorAll('.spec-item').forEach(el=>{
+    const obs=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting){
+        setTimeout(()=>el.classList.add('visible'),(parseInt(el.dataset.index)||0)*80);
+        obs.unobserve(el);
       }
+    },{threshold:.1});
+    obs.observe(el);
+  });
+  const cta=document.getElementById('specsCTA');
+  if(cta){
+    const o=new IntersectionObserver(([e])=>{if(e.isIntersecting){e.target.classList.add('visible');o.unobserve(e.target);}},{threshold:.3});
+    o.observe(cta);
+  }
+}
+observeSpecs();
 
-      // Hide scroll hint
-      const hint = document.getElementById('scrollHint');
-      if (window.scrollY > 100) {
-        hint.style.opacity = '0';
-        hint.style.transition = 'opacity 0.5s';
-      } else {
-        hint.style.opacity = '1';
-      }
-    });
+// Populate specs
+(function(){
+  const d=[
+    {l:'处理器',v:'A18 仿生芯片 (3nm)'},{l:'屏幕',v:'6.8" OLED 2K+ 120Hz'},
+    {l:'内存',v:'12GB / 16GB LPDDR5X'},{l:'存储',v:'256GB / 512GB / 1TB'},
+    {l:'主摄',v:'50MP 1英寸传感器'},{l:'电池',v:'5000mAh + 120W'},
+    {l:'系统',v:'NovaOS 3.0 (基于 Android 15)'},{l:'重量',v:'198g'},
+    {l:'防护等级',v:'IP68'},{l:'网络',v:'5G / Wi-Fi 7 / BT 5.4'},
+    {l:'充电',v:'120W有线 / 50W无线'},{l:'尺寸',v:'163.2 × 76.1 × 8.3mm'},
+  ];
+  const grid=document.getElementById('specsGrid');
+  d.forEach((x,i)=>{
+    const div=document.createElement('div');div.className='spec-item';div.dataset.index=i;
+    div.innerHTML=`<div class="spec-label">${x.l}</div><div class="spec-value">${x.v}</div>`;
+    grid.appendChild(div);
+  });
+})();
 
-    // ---- Mobile Menu Toggle ----
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    navToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-      const isOpen = mobileMenu.classList.contains('open');
-      navToggle.innerHTML = isOpen
-        ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>'
-        : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
-    });
-    mobileMenu.querySelectorAll('a').forEach((a) => {
-      a.addEventListener('click', () => mobileMenu.classList.remove('open'));
-    });
+// --- Navbar ---
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  nav.classList.toggle('scrolled',window.scrollY>50);
+  document.getElementById('scrollHint').style.opacity=window.scrollY>100?'0':'1';
+  document.getElementById('backToTop').classList.toggle('show',window.scrollY>400);
+});
+document.getElementById('backToTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-    // ---- Animation Loop ----
-    function animate(time) {
-      requestAnimationFrame(animate);
+// --- Mobile Menu ---
+const nt=document.getElementById('navToggle'),mm=document.getElementById('mobileMenu');
+nt.addEventListener('click',()=>{
+  mm.classList.toggle('open');
+  nt.innerHTML=mm.classList.contains('open')
+    ?'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>'
+    :'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+});
+mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
 
-      const sec = time / 1000;
+// --- Mouse Parallax ---
+let mouseX=0,mouseY=0;
+document.addEventListener('mousemove',e=>{
+  mouseX=(e.clientX/window.innerWidth-.5)*.5;
+  mouseY=(e.clientY/window.innerHeight-.5)*.5;
+});
 
-      // Update screen content
-      drawScreenContent(currentColor, sec);
+// --- Loading ---
+setTimeout(()=>document.getElementById('loader').classList.add('hidden'),800);
 
-      // Screen glow pulse
-      glowMat.opacity = Math.sin(sec * 0.8) * 0.03 + 0.06;
+// --- Animation Loop ---
+function animate(time){
+  requestAnimationFrame(animate);
+  const sec=time/1000;
 
-      // Ring rotation
-      ring1.rotation.z = sec * 0.15;
-      ring2.rotation.z = -sec * 0.1;
+  // Screen content
+  drawScreen(currentColor,sec);
 
-      // Animate particles
-      const pos = particles.geometry.attributes.position.array;
-      for (let i = 0; i < particleCount; i++) {
-        const t = sec * particleSpeeds[i] + particleOffsets[i];
-        const radius = 2 + Math.sin(t * 0.3) * 2;
-        const theta = t * 0.15 + particleOffsets[i];
-        const phi = Math.acos(Math.sin(t * 0.1 + particleOffsets[i]) * 0.5);
-        pos[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-        pos[i * 3 + 1] = radius * Math.cos(phi) * 1.2 + Math.sin(t * 0.2) * 0.5;
-        pos[i * 3 + 2] = radius * Math.sin(phi) * Math.sin(theta);
-      }
-      particles.geometry.attributes.position.needsUpdate = true;
+  // Glow pulse
+  glow.material.opacity=Math.sin(sec*.8)*.03+.06;
 
-      controls.update();
-      renderer.render(scene, camera);
-    }
+  // Ring rotation
+  r1.rotation.z=sec*.15;
+  r2.rotation.z=-sec*.1;
 
-    animate(0);
+  // Scroll-driven rotation (smooth interpolation)
+  group.rotation.y+=(targetRotY-group.rotation.y)*.05;
+  // Camera Y (slight scroll tilt)
+  camera.position.y+=(targetCamY-camera.position.y)*.03;
 
-    console.log('NOVA X1 Pro - 3D 展示网站已启动');
-  </script>
+  // Mouse parallax on product
+  group.rotation.x+=(-mouseY*.1-group.rotation.x)*.03;
+  group.position.x+=(mouseX*.15-group.position.x)*.03;
 
+  // Particles
+  const pos=particles.geometry.attributes.position.array;
+  for(let i=0;i<pc;i++){
+    const t=sec*ps[i]+po[i];
+    const r=2+Math.sin(t*.3)*2;
+    const theta=t*.15+po[i];
+    const phi=Math.acos(Math.sin(t*.1+po[i])*.5);
+    pos[i*3]=r*Math.sin(phi)*Math.cos(theta);
+    pos[i*3+1]=r*Math.cos(phi)*1.2+Math.sin(t*.2)*.5;
+    pos[i*3+2]=r*Math.sin(phi)*Math.sin(theta);
+  }
+  particles.geometry.attributes.position.needsUpdate=true;
+
+  controls.update();
+  renderer.render(scene,camera);
+}
+animate(0);
+</script>
 </body>
 </html>
